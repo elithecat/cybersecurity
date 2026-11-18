@@ -37,10 +37,10 @@ xelatex source_notes.tex    # run twice
 | First half: recent hacks | 11 | 8 |
 | First half: hacks with AI, and what AI changes | 12 | 11 |
 | First half: predictions, and the answer | 12 | 9 |
-| Second half: what you can do right now | 29 | 19 |
+| Second half: what you can do right now | 30 | 19 |
 | Second half: AI tools | 4 | 4 |
 | Takeaways | 1 | 1 |
 | Questions | 1 | 5 |
 | Backup slides | 3 | 0 |
 
-Table: planned minutes for each part of the talk. The slide counts include the section slide of each part. The slide counts sum to 77, and the minutes sum to 60. The minutes are a plan, not a measurement. A reviewer scaled the word counts and estimated about 57 minutes of speaking time, which leaves little time for questions. We added 4 slides to Section 4 and 1 slide to Section 5 after that estimate. Rehearse once with a timer before the talk.
+Table: planned minutes for each part of the talk. The slide counts include the section slide of each part. The slide counts sum to 78, and the minutes sum to 60. The minutes are a plan, not a measurement. A reviewer scaled the word counts and estimated about 57 minutes of speaking time, which leaves little time for questions. We added 4 slides to Section 4 and 1 slide to Section 5 after that estimate. Rehearse once with a timer before the talk.
