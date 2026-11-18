@@ -1,0 +1,144 @@
+% Source notes for the deck "Cybersecurity in 2026". Compile with XeLaTeX.
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=0.8in]{geometry}
+\usepackage{fontspec}
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmonofont{Libertinus Mono}[Scale=0.85]
+\usepackage{longtable,booktabs,array,xcolor,graphicx}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\makeatletter\g@addto@macro{\UrlBreaks}{\do\/\do\-\do\_\do\.}\makeatother
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\hypersetup{colorlinks=true,allcolors=black}
+\setlength{\parindent}{0pt}\setlength{\parskip}{6pt}
+\raggedright
+\begin{document}
+{\LARGE\bfseries Source notes: ``Cybersecurity in 2026''}\par
+Draft of November 12, 2026. Language model: \texttt{claude-fable-5-2}. Research prompt version: v1.
+
+\section*{Overview}
+The deck \texttt{cybersecurity\_2026\_briefing.pdf} contains 4 kinds of claims.
+\begin{enumerate}
+\item \textbf{Checked claims.} On November 12, 2026, we downloaded the source page and matched the quoted words or the number in its text. Table 1 lists these claims. The slides show them without a flag.
+\item \textbf{Unchecked claims.} The network rules of the session blocked most news, government, and vendor sites. For these claims, the research agents had only the excerpts that the search tool returned. The slides mark each such claim with ``[verify]''. Table 2 lists them by slide, with the research report that holds the URLs.
+\item \textbf{Local facts.} An earlier draft marked local facts (the talk date and Brown-specific details) with blue brackets. Alyssa removed them on November 18, 2026. 1 blue bracket remains, for Wirecutter's VPN pick. Table 3 lists what the earlier draft left open.
+\item \textbf{Definitions, advice, and conclusions without a source.} These statements are ours: the definitions of terms, the takeaways, the 3-level sort, the time estimates, and general advice (for example ``cover the screen,'' the description of a passkey as a secret and a lock, the table of factors and the statement that a passkey counts as 2 factors, the advice on passkey storage, the comparison of a passcode with face or fingerprint (2 of its statements carry a flag), the limits of a passkey, the lab data steps, the first-hour steps, the step to delete old accounts, and the API key steps). The slides show them without a flag. No table lists them.
+\end{enumerate}
+We could reach only these hosts: \texttt{www.anthropic.com}, \texttt{cloud.google.com}, \texttt{www.microsoft.com}, \texttt{code.claude.com}, and \texttt{raw.githubusercontent.com}. Many checked claims therefore come from Anthropic, which sells the models that the claims describe. The slide ``Skeptics'' states this limit.
+
+The process has 3 steps. Figure 1 shows them.
+
+\begin{center}
+\setlength{\fboxsep}{6pt}
+\fbox{\parbox{0.27\textwidth}{\centering Research agent records the claim, the source URL, and a status label}}
+$\rightarrow$
+\fbox{\parbox{0.27\textwidth}{\centering We download the page and search its text for the exact words}}
+$\rightarrow$
+\fbox{\parbox{0.27\textwidth}{\centering Match: no flag (Table 1). Page blocked: ``[verify]'' (Table 2)}}
+\par\smallskip
+{\small Figure 1. Verification steps for each claim on the slides. A sourced claim receives no flag only if we found its exact words or its number in the text of the source page on November 12, 2026. Statements of the fourth kind have no source and no flag. A blocked page always leads to the flag ``[verify]''.}
+\end{center}
+
+\section*{Figures on the slides}
+The script \texttt{code/briefing\_figures.R} draws both figures. The slide ``Flaws reported and patched'' shows 530 reported and 75 patched flaws (Anthropic, May 22, 2026; checked). The slide ``Public flaw counts'' shows 39,639 CVE records for January to October 2025 and 89,859 for January to October 2026. On November 12, 2026, we downloaded these counts from J. Gamblin's public tabulation of the U.S. National Vulnerability Database (file \texttt{outputs/2026/ytd\_summary.json} in \url{https://github.com/jgamblin/monthlyCVEStats}). We did not check the tabulation against the database itself.
+
+\section*{Tables}
+\begin{longtable}{L{0.2\textwidth}L{0.4\textwidth}L{0.32\textwidth}}
+\caption{Checked claims. Each row gives the slide title, the claim, and the page where we found the exact words or the number on November 12, 2026. For example, the first row states that the page anthropic.com/glasswing contains the quoted sentence and both flaw ages.}\\
+\toprule
+\textbf{Slide} & \textbf{Claim} & \textbf{Source page}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Slide} & \textbf{Claim} & \textbf{Source page}\\
+\midrule
+\endhead
+Claude Mythos Preview & ``thousands of high-severity vulnerabilities, including some in every major operating system and web browser''; 27-year-old OpenBSD flaw; 16-year-old FFmpeg flaw & \url{https://www.anthropic.com/glasswing}\\\addlinespace
+Claude Mythos Preview & 181 working Firefox exploits, against 2 for the earlier model, ``without the browser's process sandbox'' & \url{https://www.anthropic.com/research/mythos-preview}\\\addlinespace
+Claude Mythos Preview; Flaws reported and patched & About 50 partners; 75 of 530 reported flaws patched; ``we're still early in the 90-day window''; maintainers asked Anthropic to ``slow down'' & \url{https://www.anthropic.com/news/glasswing-initial-update}\\\addlinespace
+Not on a slide in this draft & At least 129,000 verified flaws from partners, April to July 2026; fewer than 50\% of partners disclosed patch counts & \url{https://www.anthropic.com/news/cyber-verification-program}\\\addlinespace
+Flaws reported and patched & ``Finding bugs and fixing them are drastically out of balance.'' & \url{https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/}\\\addlinespace
+Public flaw counts; Entry methods; Skeptics & Mean time to exploit of an estimated $-7$ days in 2025; exploits were 32\% of intrusions; ``the vast majority of successful intrusions still stem from fundamental human and systemic failures'' & \url{https://cloud.google.com/blog/topics/threat-intelligence/m-trends-2026}\\\addlinespace
+Exploits built from patches & 8 exploits from 21 Windows patches, about \$2,000 each; ``would have finished creating all eight full chain exploits before any of the Windows devices had received the patch''; ``still requires further work'' & \url{https://www.anthropic.com/research/n-days}\\\addlinespace
+Skill; Spread of capability & Fable 5 released with safeguards on some topics & \url{https://www.anthropic.com/news/claude-fable-5-mythos-5}\\\addlinespace
+Skill; Spread of capability & GLM-5.3: 50 of 410 attempts, Mythos Preview 56 of 410; safeguards bypassed 64\% to 100\% of the time; ``But those models have now arrived.'' & \url{https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities}\\\addlinespace
+Reported hacks with AI & AI performed 80--90\% of a campaign against roughly 30 targets, and ``succeeded in a small number of cases'' & \url{https://www.anthropic.com/news/disrupting-AI-espionage}\\\addlinespace
+Reported hacks with AI & Exploit ``that we believe was developed with AI''; ``it requires valid user credentials in the first place'' & \url{https://cloud.google.com/blog/topics/threat-intelligence/ai-vulnerability-exploitation-initial-access}\\\addlinespace
+Break-ins during AI tests & OpenAI models left a test environment and reached Hugging Face systems (Anthropic's account of OpenAI's disclosure) & \url{https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals}\\\addlinespace
+Reported hacks with AI & Storm-0940 used the agent framework ARTEX to attempt sign-ins to more than 2,250 tenants & \url{https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/}\\\addlinespace
+Skill & 2 operators of group GTG-10007 were undergraduate students & \url{https://www.anthropic.com/threat-intelligence-report-september-2026}\\\addlinespace
+Skeptics; Public flaw counts & ``scaling in tandem with the overall vulnerability landscape rather than outpacing it''; 0.23\% of 2026 disclosures exploited; ``Linux Kernel'' descriptions ``generated approximately 5,000'' records & \url{https://cloud.google.com/blog/topics/threat-intelligence/vulnerability-discovery-and-exploitation-trends-in-the-ai-era}\\\addlinespace
+Anthropic on timing & ``The work of defending the world's cyber infrastructure might take years; frontier AI capabilities are likely to advance substantially over just the next few months.'' & \url{https://www.anthropic.com/glasswing}\\\addlinespace
+Anthropic on timing & ``we haven't yet achieved a sufficient reduction in cyber risk''; ``Our forecast is that in two years, AI will favor defense''; ``But in the near term, that may not be true.'' & \url{https://www.anthropic.com/news/anthropic-cyber-mission}\\\addlinespace
+Paycheck theft & Since March 2025, 11 compromised accounts at 3 universities, used to send phishing emails to nearly 6,000 accounts at 25 universities; some accounts had no multi-factor sign-in; Microsoft recommends phishing-resistant sign-in & \url{https://www.microsoft.com/en-us/security/blog/2025/10/09/investigating-targeted-payroll-pirate-attacks-affecting-us-universities/}\\\addlinespace
+Skeptics & In 3 incidents, Claude used ``basic techniques, such as exploiting weak passwords'' & \url{https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals}\\\addlinespace
+A3. Passkeys & Multi-factor sign-in ``reduces the risk of compromise by 99.22\%'' & \url{https://www.microsoft.com/en-us/research/publication/how-effective-is-multifactor-authentication-at-deterring-cyberattacks/}\\\addlinespace
+A5. Habits & ``campaigns targeting thousands of enterprise and end-user devices globally every day'' & \url{https://www.microsoft.com/en-us/security/blog/2025/08/21/think-before-you-clickfix-analyzing-the-clickfix-social-engineering-technique/}\\\addlinespace
+Public flaw counts & 39,639 CVE records in January to October 2025; 89,859 in January to October 2026 & \url{https://raw.githubusercontent.com/jgamblin/monthlyCVEStats/main/outputs/2026/ytd_summary.json}\\\addlinespace
+Reported hacks with AI; Energy & ``using LLM frameworks to fully automate vulnerability discovery and exploitation without a human in the loop for the first time''; a framework that ``compares code before and after patch announcements'' and ``drafts exploits'' & \url{https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold}\\\addlinespace
+Break-ins during AI tests & A Claude model ``gained unauthorized access to the real systems of three different organizations'' & \url{https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals}\\\addlinespace
+Skill & ``exploits in hours that expert penetration testers said would have taken them weeks'' & \url{https://www.anthropic.com/research/mythos-preview}\\\addlinespace
+Energy & ``the AI made thousands of requests, often multiple per second'' & \url{https://www.anthropic.com/news/disrupting-AI-espionage}\\\addlinespace
+Energy & ``to accelerate the activity to machine speed''; 26,502 raw findings in about 2 weeks & \url{https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/} and the Microsoft page of November 11, 2026 listed above\\\addlinespace
+AI agents & ``A 1\% attack success rate''; ``An adaptive attacker is given 100 attempts per environment''; ``No browser agent is immune to prompt injection'' & \url{https://www.anthropic.com/research/prompt-injection-defenses}\\\addlinespace
+\bottomrule
+\end{longtable}
+\begin{longtable}{L{0.22\textwidth}L{0.45\textwidth}L{0.25\textwidth}}
+\caption{Unchecked claims, by slide. These claims come from search excerpts, because the session could not open the source pages. The third column names the report in \texttt{agent-reports/research/} (file names end in \texttt{\_2026-11-12.md}) that lists the URL and the status of each claim. Open each URL and compare the wording before the talk.}\\
+\toprule
+\textbf{Slide} & \textbf{Unchecked claims} & \textbf{Research report}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Slide} & \textbf{Unchecked claims} & \textbf{Research report}\\
+\midrule
+\endhead
+Vanderbilt; Other universities; Takeaways after ``Entry methods'' & All Vanderbilt details; Michigan State; Munich; New Mexico; Copenhagen; Technical University of Denmark; the count of at least 6 universities & \texttt{research\_\allowbreak university\_\allowbreak hacks}\\\addlinespace
+Archive of Our Own; PHP flaws; Java flaw & All claims on these 3 slides. The sources are search summaries of CISA, BleepingComputer, The Register, Tenable, Talos, Rapid7, OX Security, CNN, and the Washington Times, read on November 18, 2026. The PHP flaws are CVE-2026-109618 and CVE-2026-109619; the Java flaw is CVE-2026-114938. Sources disagree on the Java severity score (9.2 or 8.1) and on the date when CISA listed the PHP flaws (October 26 or 27). & \texttt{none; searches of November 18, 2026}\\\addlinespace
+Industry letter & All claims on this slide: the open letter of August 27, 2026, its signers, its warning of months to prepare, the quoted sentence, OpenAI's \$1 billion program (Daybreak), Altman's meetings with utilities, and the agencies' report on industrial control equipment. The sources are search summaries of Axios, SiliconANGLE, The Next Web, and Yahoo, read on November 18, 2026. Reports give the number of signers as more than 100, 116, or more than 130. & \texttt{none; searches of November 18, 2026}\\\addlinespace
+Range of predictions; Schneier; Stamos and Mandia; Amodei in September & All statements by Schneier, Stamos, Mandia, and Marcus, and the title and date of Amodei's essay. The sources are search summaries of schneier.com, CyberScoop, Bloomberg, Axios, and KTLA, read on November 18, 2026. The 4 quotations from the essay are checked: Alyssa pasted the text of the essay in chat on November 18, 2026, and we copied the quotations from that text. The pasted text has no title and no date. The positions of the 4 names on the line are our reading. The essay does not say that critical infrastructure must leave the public internet, and we found no such statement by anyone in 3 further searches. & \texttt{none; searches of November 18, 2026}\\\addlinespace
+Canvas during finals & Dates, 275 million records, about 9,000 institutions, ``reached an agreement,'' Brown's exposure & \texttt{research\_\allowbreak university\_\allowbreak hacks; research\_\allowbreak major\_\allowbreak hacks\_\allowbreak 2026}\\\addlinespace
+Ivy League in 2025 & Columbia 868,969; Penn; Princeton; Harvard; Oracle software flaw & \texttt{research\_\allowbreak university\_\allowbreak hacks}\\\addlinespace
+Other sectors & Binance, Oracle Health, Stryker, Denmark & \texttt{research\_\allowbreak major\_\allowbreak hacks\_\allowbreak 2026}\\\addlinespace
+Entry methods & Sophos survey: 27\%, 23\%, 13\%, 35\%, 69\%, n = 95 & \texttt{research\_\allowbreak university\_\allowbreak hacks}\\\addlinespace
+Public flaw counts & No unchecked claim remains on this slide. An earlier draft stated that the median federal patch deadline fell from 21 days to 3; we removed that claim. & \texttt{research\_\allowbreak ai\_\allowbreak cyber\_\allowbreak evidence}\\\addlinespace
+Skeptics & Stenberg quote & \texttt{research\_\allowbreak ai\_\allowbreak cyber\_\allowbreak evidence}\\\addlinespace
+Altman; Altman's remedy & Both Stanford quotes (2 wordings exist for each); the Axios quote. Primary source: youtube.com/watch?v=anAmTGcewX8 & \texttt{research\_\allowbreak altman\_\allowbreak quotes}\\\addlinespace
+Amodei in April; Amodei on the opportunity & 3 posts on X (text from the search index, not from x.com); ``moment of danger'' (CNBC) & \texttt{research\_\allowbreak amodei\_\allowbreak mythos}\\\addlinespace
+Reasons for caution & that both companies sell defensive products; the date of Amodei's post; ``mirrors an arms-dealer dynamic''; Gear Live on the ``defense shield''; NCSC advice to install patches & \texttt{research\_\allowbreak altman\_\allowbreak quotes; research\_\allowbreak protective\_\allowbreak guidance}\\\addlinespace
+A1 to A5 & NCSC update advice; Wirecutter password manager picks (third-party show notes only); NIST lengths; that the company behind a password manager cannot read the passwords; that the built-in managers open with the phone passcode; the built-in password managers; Google and Apple menu paths; the FBI advice on a code word; Wall Street Journal 2023 & \texttt{research\_\allowbreak account\_\allowbreak hardening; research\_\allowbreak protective\_\allowbreak guidance}\\\addlinespace
+Security keys; App codes and text-message codes; Sign-in methods compared; A6; B1 to B6 & the 4-row comparison of sign-in methods and the weaknesses of text-message codes (UK NCSC, CISA); Wirecutter's security key picks and the \$29 price (from a Yubico copy of the Wirecutter article and third-party pages, not from Wirecutter's site); Apple security key path; Google statement on recovery factors; CISA advice on text messages; Google 2019 percentages; carrier lock names; that SIM-swap attacks are rare; browser setting names; that Wirecutter recommends uBlock Origin and Privacy Badger (the speaker's statement; nytimes.com was blocked); FBI ad-blocker advice; extension takeover counts; CISA backups; FTC credit freeze & \texttt{research\_\allowbreak account\_\allowbreak hardening; research\_\allowbreak protective\_\allowbreak guidance}\\\addlinespace
+C1 to C4; Advice to drop & Advanced Protection Program; Advanced Data Protection; Lockdown Mode; alias services; Private Relay; EFF and CISA on VPNs, including CISA's reason; the iPhone and Android tracking settings and EFF's advice on trackers and data brokers; FTC on public Wi-Fi & \texttt{research\_\allowbreak account\_\allowbreak hardening; research\_\allowbreak protective\_\allowbreak guidance}\\\addlinespace
+Lab data; AI agents; Coding agents & Hawaii Cancer Center counts; CISA and NSA agent guide; package malware (about 170 packages); CISA 7-day advice & \texttt{research\_\allowbreak university\_\allowbreak hacks; research\_\allowbreak major\_\allowbreak hacks\_\allowbreak 2026; research\_\allowbreak protective\_\allowbreak guidance}\\\addlinespace
+\bottomrule
+\end{longtable}
+\begin{longtable}{L{0.3\textwidth}L{0.62\textwidth}}
+\caption{Local facts for the speaker to supply or confirm. The slides show each of these facts in blue brackets.}\\
+\toprule
+\textbf{Slide} & \textbf{Fact to supply or confirm}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Slide} & \textbf{Fact to supply or confirm}\\
+\midrule
+\endhead
+Title slide & Date of the talk\\\addlinespace
+Levels of urgency; A2; A3. Passkey setup; A5 & The OIT contact; the password manager that OIT approves; the passkey or security key option for Brown sign-in; the address for reports of suspicious messages\\\addlinespace
+C3. Private Relay and VPNs & Wirecutter's current VPN pick\\\addlinespace
+A6; Takeaways after ``After a break-in'' & The 5-minute and 2-hour estimates are ours, from the per-step estimates on the checklist\\\addlinespace
+After a break-in; Questions? & Brown's IT security phone number; Brown OIT's own first-hour steps; a link or QR code for the checklist\\\addlinespace
+\bottomrule
+\end{longtable}
+
+\section*{Known conflicts between sources}
+\begin{itemize}
+\item Altman's Stanford quote: The Next Web prints ``going to''; Gizmodo prints ``gonna.''
+\item Vanderbilt: one search summary says that classes continued; a research report says that the university cancelled classes. The slides do not state either.
+\item Stolen passwords on the Sophos slide: the source term is ``compromised credentials.'' The slides say ``stolen passwords.''
+\item The Sophos figure of 69\% for restored backups may apply only to organizations whose data the attackers encrypted. We could not check the denominator.
+\item Binance: Binance says about \$6.3 billion; TRM Labs says \$6.36 billion; Elliptic says \$6.43 billion.
+\item Firefox: Amodei reportedly said ``almost 300'' flaws; Anthropic's page says that Mozilla fixed 271.
+\item Stanford interview: the video was reportedly posted on October 21, 2026. We could not confirm the recording date.
+\end{itemize}
+\end{document}
